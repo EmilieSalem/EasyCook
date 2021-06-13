@@ -6,8 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".ui.recipeList.RecipeListActivity">
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/recipe_rv"
+        app:layout_constraintEnd_toEndOf="@+id/recipe_rv"
+        app:layout_constraintStart_toStartOf="@+id/recipe_rv"
+        app:layout_constraintTop_toTopOf="@+id/recipe_rv" />
+
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/btnAddRecipe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -24,7 +35,7 @@
         app:tint="@color/black" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/btnScanQRCode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

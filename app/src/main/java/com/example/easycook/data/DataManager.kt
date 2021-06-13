@@ -46,6 +46,16 @@ object DataManager {
         editor.commit()
     }
 
+    fun modifyRecipe(recipe: Recipe, context: Context){
+        val recipes: MutableList<Recipe> = getRecipeList(context).toMutableList()
+        val i = recipes.indexOf(recipes.find { it.id == recipe.id })
+        recipes[i] = recipe
+        val recipeList = RecipeList(recipes)
+        val editor = provideSharedPreferencesEditor(context)
+        editor.putString(RECIPE_LIST_KEY, Gson().toJson(recipeList))
+        editor.commit()
+    }
+
     fun removeRecipe(recipeId: String, context: Context){
         val recipes = getRecipeList(context).toMutableList()
         recipes.removeIf { it.id == recipeId}

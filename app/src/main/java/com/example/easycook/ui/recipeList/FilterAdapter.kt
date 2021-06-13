@@ -1,21 +1,15 @@
 package com.example.easycook.ui.recipeList
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.easycook.R
-import com.example.easycook.model.Recipe
 import com.example.easycook.model.Tag
-import com.like.LikeButton
-import com.squareup.picasso.Picasso
 
 class FilterAdapter(
-    private val actionListener: ActionListener? = null
+    private val filterActionListener: FilterActionListener
 ) : RecyclerView.Adapter<FilterAdapter.FilterViewHolder>() {
 
     private val filters: MutableList<Tag> = mutableListOf()
@@ -31,7 +25,7 @@ class FilterAdapter(
     }
 
     override fun onBindViewHolder(holder: FilterViewHolder, position: Int) {
-        holder.bind(filters[position], actionListener)
+        holder.bind(filters[position], filterActionListener)
     }
 
     override
@@ -42,15 +36,18 @@ class FilterAdapter(
     ) : RecyclerView.ViewHolder(itemView) {
         private val name: TextView = itemView.findViewById(R.id.filter_name)
 
-        fun bind(tag: Tag, actionListener: ActionListener?) {
+        fun bind(tag: Tag, filterActionListener: FilterActionListener) {
             name.text = tag.tagName
-            // TODO : implémenter les click listeners
+
+            itemView.setOnClickListener{
+                filterActionListener.onFilterClicked(tag)
+            }
         }
 
     }
 
-    interface ActionListener {
-        // TODO : ajouter les fonctions nécessaires
+    interface FilterActionListener {
+        fun onFilterClicked(tag : Tag)
     }
 
 }
