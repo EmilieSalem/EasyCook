@@ -15,8 +15,11 @@ class CreateRecipeActivity : AppCompatActivity() {
 
     // TODO : A modifier si besoin
     companion object {
-        fun navigateToCreateRecipe(context : Context) {
+        fun navigateToCreateRecipe(context: Context, recipeId: String? = null) {
             val toCreateRecipe = Intent(context, CreateRecipeActivity::class.java)
+            val bundle = Bundle()
+            bundle.putString("recipeId", recipeId)
+            toCreateRecipe.putExtras(bundle)
             ContextCompat.startActivity(context, toCreateRecipe, null)
         }
     }

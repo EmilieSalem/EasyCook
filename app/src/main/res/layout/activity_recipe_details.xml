@@ -5,10 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    card_view:cardUseCompatPadding="true"
-    card_view:cardElevation="5dp"
-    card_view:cardCornerRadius="8dp"
-    card_view:cardBackgroundColor="@color/white"
     tools:context=".ui.recipeDetails.RecipeDetailsActivity">
 
     <ScrollView
@@ -21,118 +17,270 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
-        <androidx.cardview.widget.CardView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp">
+            android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardview_recipe_infos"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                card_view:cardUseCompatPadding="true"
+                card_view:cardElevation="5dp"
+                card_view:cardCornerRadius="8dp"
+                card_view:cardBackgroundColor="@color/white"
+                card_view:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="8dp">
 
-                <ImageView
-                    android:id="@+id/recipe_image"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:src="@mipmap/logo_easycook"/>
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/recipe_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center"
-                    android:text="Titre de la recette"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    app:layout_constraintTop_toBottomOf="@id/recipe_image" />
+                    <ImageView
+                        android:id="@+id/recipe_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:src="@mipmap/logo_easycook" />
 
-                <ImageView
-                    android:id="@+id/time_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:src="@drawable/ic_time_icon"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/recipe_preparation_time_label"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/recipe_name"
-                    card_view:layout_constraintVertical_bias="0.0" />
+                    <TextView
+                        android:id="@+id/recipe_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:text="Titre de la recette"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintTop_toBottomOf="@id/recipe_image" />
 
-                <TextView
-                    android:id="@+id/recipe_preparation_time_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="XX min"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/shares_image"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/time_image"
-                    app:layout_constraintTop_toBottomOf="@id/recipe_name"
-                    card_view:layout_constraintVertical_bias="0.0" />
+                    <ImageView
+                        android:id="@+id/recipe_preparation_time_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:src="@drawable/ic_time_icon"
+                        app:layout_constraintTop_toBottomOf="@id/recipe_name"
+                        card_view:layout_constraintBottom_toTopOf="@+id/recipe_description"
+                        card_view:layout_constraintEnd_toStartOf="@+id/recipe_preparation_time"
+                        card_view:layout_constraintHorizontal_bias="0.5"
+                        card_view:layout_constraintStart_toStartOf="parent" />
 
-                <ImageView
-                    android:id="@+id/shares_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:src="@drawable/ic_shares_icon"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/recipe_shares_label"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/recipe_preparation_time_label"
-                    app:layout_constraintTop_toBottomOf="@id/recipe_name"
-                    card_view:layout_constraintVertical_bias="0.0" />
+                    <TextView
+                        android:id="@+id/recipe_preparation_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="XX min"
+                        app:layout_constraintTop_toBottomOf="@id/recipe_name"
+                        card_view:layout_constraintBottom_toTopOf="@+id/recipe_description"
+                        card_view:layout_constraintEnd_toStartOf="@+id/recipe_shares_icon"
+                        card_view:layout_constraintHorizontal_bias="0.5"
+                        card_view:layout_constraintStart_toEndOf="@+id/recipe_preparation_time_icon" />
 
-                <TextView
-                    android:id="@+id/recipe_shares_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="X personnes"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/shares_image"
-                    app:layout_constraintTop_toBottomOf="@id/recipe_name"
-                    card_view:layout_constraintVertical_bias="0.0" />
+                    <ImageView
+                        android:id="@+id/recipe_shares_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:src="@drawable/ic_shares_icon"
+                        app:layout_constraintTop_toBottomOf="@id/recipe_name"
+                        card_view:layout_constraintBottom_toTopOf="@+id/recipe_description"
+                        card_view:layout_constraintEnd_toStartOf="@+id/recipe_shares"
+                        card_view:layout_constraintHorizontal_bias="0.5"
+                        card_view:layout_constraintStart_toEndOf="@+id/recipe_preparation_time" />
 
-                <TextView
-                    android:id="@+id/recipe_description"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:text="Description..."
-                    app:layout_constraintTop_toBottomOf="@id/time_image"
-                    card_view:layout_constraintBottom_toBottomOf="parent"
-                    card_view:layout_constraintEnd_toEndOf="parent"
-                    card_view:layout_constraintStart_toStartOf="parent" />
+                    <TextView
+                        android:id="@+id/recipe_shares"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="X personnes"
+                        app:layout_constraintTop_toBottomOf="@id/recipe_name"
+                        card_view:layout_constraintBottom_toTopOf="@+id/recipe_description"
+                        card_view:layout_constraintEnd_toStartOf="@+id/recipe_author_icon"
+                        card_view:layout_constraintHorizontal_bias="0.5"
+                        card_view:layout_constraintStart_toEndOf="@+id/recipe_shares_icon" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:id="@+id/recipe_author"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="Auteur"
+                        app:layout_constraintTop_toBottomOf="@id/recipe_name"
+                        card_view:layout_constraintBottom_toTopOf="@+id/recipe_description"
+                        card_view:layout_constraintEnd_toEndOf="parent"
+                        card_view:layout_constraintHorizontal_bias="0.5"
+                        card_view:layout_constraintStart_toEndOf="@+id/recipe_author_icon" />
 
-        </androidx.cardview.widget.CardView>
+                    <ImageView
+                        android:id="@+id/recipe_author_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:src="@drawable/ic_author_icon"
+                        app:layout_constraintTop_toBottomOf="@id/recipe_name"
+                        card_view:layout_constraintBottom_toTopOf="@+id/recipe_description"
+                        card_view:layout_constraintEnd_toStartOf="@+id/recipe_author"
+                        card_view:layout_constraintHorizontal_bias="0.5"
+                        card_view:layout_constraintStart_toEndOf="@+id/recipe_shares" />
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp">
+                    <TextView
+                        android:id="@+id/recipe_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:text="Description..."
+                        app:layout_constraintTop_toBottomOf="@id/recipe_preparation_time_icon"
+                        card_view:layout_constraintEnd_toEndOf="parent"
+                        card_view:layout_constraintStart_toStartOf="parent" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/tags_rv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        app:layout_constraintTop_toBottomOf="@id/recipe_description"
+                        card_view:layout_constraintEnd_toEndOf="parent"
+                        card_view:layout_constraintStart_toStartOf="parent">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+
+                    <com.like.LikeButton
+                        android:id="@+id/recipe_heart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="16dp"
+                        android:translationZ="90dp"
+                        app:icon_size="15dp"
+                        app:icon_type="heart"
+                        app:layout_constraintTop_toBottomOf="@id/tags_rv"
+                        card_view:anim_scale_factor="1.5"
+                        card_view:layout_constraintBottom_toBottomOf="parent"
+                        card_view:layout_constraintEnd_toEndOf="parent"
+                        card_view:layout_constraintStart_toStartOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardview_ingredients"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                card_view:cardUseCompatPadding="true"
+                card_view:cardElevation="5dp"
+                card_view:cardCornerRadius="8dp"
+                card_view:cardBackgroundColor="@color/white"
+                card_view:layout_constraintTop_toBottomOf="@id/cardview_recipe_infos">
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/ingredients_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:text="Ingredients"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        card_view:layout_constraintBottom_toTopOf="@+id/ingredients_rv"
+                        card_view:layout_constraintEnd_toEndOf="parent"
+                        card_view:layout_constraintStart_toStartOf="parent"
+                        card_view:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/ingredients_rv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        card_view:layout_constraintBottom_toBottomOf="parent"
+                        card_view:layout_constraintEnd_toEndOf="parent"
+                        card_view:layout_constraintStart_toStartOf="parent"
+                        card_view:layout_constraintTop_toBottomOf="@id/ingredients_label" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardview_steps"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardUseCompatPadding="true"
+                card_view:cardElevation="5dp"
+                card_view:cardCornerRadius="8dp"
+                card_view:cardBackgroundColor="@color/white"
+                card_view:layout_constraintTop_toBottomOf="@id/cardview_ingredients">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/steps_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:text="Etapes"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        card_view:layout_constraintBottom_toTopOf="@+id/steps_rv"
+                        card_view:layout_constraintEnd_toEndOf="parent"
+                        card_view:layout_constraintStart_toStartOf="parent"
+                        card_view:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/steps_rv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        card_view:layout_constraintBottom_toBottomOf="parent"
+                        card_view:layout_constraintEnd_toEndOf="parent"
+                        card_view:layout_constraintStart_toStartOf="parent"
+                        card_view:layout_constraintTop_toBottomOf="@id/steps_label" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
 
@@ -146,37 +294,36 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/imageButton8"
+        android:id="@+id/button_edit_recipe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_edit_button"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton7"
+        app:layout_constraintEnd_toStartOf="@+id/button_delete_recipe"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
     <ImageView
-        android:id="@+id/imageButton7"
+        android:id="@+id/button_delete_recipe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_delete_button"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton9"
+        app:layout_constraintEnd_toStartOf="@+id/button_RA_glasses"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageButton8"
+        app:layout_constraintStart_toEndOf="@+id/button_edit_recipe"
         app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
     <ImageView
-        android:id="@+id/imageButton9"
+        android:id="@+id/button_RA_glasses"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_glasses_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/bottom_bar"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageButton7"
+        app:layout_constraintStart_toEndOf="@+id/button_delete_recipe"
         app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
