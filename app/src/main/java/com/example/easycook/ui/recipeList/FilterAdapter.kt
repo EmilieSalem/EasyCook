@@ -13,9 +13,20 @@ class FilterAdapter(
 ) : RecyclerView.Adapter<FilterAdapter.FilterViewHolder>() {
 
     private val filters: MutableList<Tag> = mutableListOf()
+    private var selectedTag: Tag? = null
 
     fun show(tags: List<Tag>) {
         this.filters.addAll(tags)
+        notifyDataSetChanged()
+    }
+
+    fun unselectAllTags() {
+        selectedTag = null
+        notifyDataSetChanged()
+    }
+
+    fun selectTag(tag: Tag) {
+        selectedTag = tag
         notifyDataSetChanged()
     }
 
@@ -25,7 +36,7 @@ class FilterAdapter(
     }
 
     override fun onBindViewHolder(holder: FilterViewHolder, position: Int) {
-        holder.bind(filters[position], filterActionListener)
+        holder.bind(filters[position], filterActionListener, selectedTag)
     }
 
     override
@@ -36,18 +47,22 @@ class FilterAdapter(
     ) : RecyclerView.ViewHolder(itemView) {
         private val name: TextView = itemView.findViewById(R.id.filter_name)
 
-        fun bind(tag: Tag, filterActionListener: FilterActionListener) {
+        fun bind(tag: Tag, filterActionListener: FilterActionListener, selectedTag: Tag?) {
             name.text = tag.tagName
-
-            itemView.setOnClickListener{
-                filterActionListener.onFilterClicked(tag)
+            itemView.setOnClickListener {
+                filterActionListener.onTagClicked(tag)
+            }
+            if (tag == selectedTag) {
+                itemView.backgroundTintList = itemView.context.getColorStateList(R.color.green)
+            } else {
+                itemView.backgroundTintList = itemView.context.getColorStateList(R.color.yellow)
             }
         }
 
     }
 
     interface FilterActionListener {
-        fun onFilterClicked(tag : Tag)
+        fun onTagClicked(tag: Tag)
     }
 
 }
