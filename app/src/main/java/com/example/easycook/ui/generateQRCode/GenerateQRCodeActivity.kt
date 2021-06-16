@@ -5,9 +5,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import com.example.easycook.R
 import com.example.easycook.data.DataManager
+import com.google.zxing.BarcodeFormat
+import com.journeyapps.barcodescanner.BarcodeEncoder
 
 class GenerateQRCodeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,6 +22,14 @@ class GenerateQRCodeActivity : AppCompatActivity() {
         val recipeId = bundle?.getString("recipeId") ?: "Pas de recipeId trouvé"
         Log.i("TEST_ID", DataManager.getRecipeById(recipeId, this).toString())
          */
+
+        val qrcodeImageView = findViewById<ImageView>(R.id.qrCodeImageView)
+
+        val content = "IdRecette"
+        val barcodeEncoder = BarcodeEncoder()
+        val bitmap = barcodeEncoder.encodeBitmap(content, BarcodeFormat.QR_CODE, 512, 512)
+
+        qrcodeImageView.setImageBitmap(bitmap)
     }
 
     // TODO : A modifier si besoin
