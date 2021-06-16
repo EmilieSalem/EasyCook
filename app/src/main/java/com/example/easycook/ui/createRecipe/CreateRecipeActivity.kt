@@ -227,7 +227,10 @@ class CreateRecipeActivity : AppCompatActivity(), View.OnClickListener, TagCheck
                 val description = recipeDescriptionET.text.toString()
                 val numberOfShares = Integer.parseInt(sharesET.text.toString())
                 val preparationTime = Integer.parseInt(preparationTimeET.text.toString())
-                imageURL = imageURLET.text.toString()
+                if(imageURLET.text.toString()!= "")
+                    imageURL = imageURLET.text.toString()
+                else
+                    imageURL = "https://glouton.b-cdn.net/site/images/no-image-wide.png"
 
                 if(getRecipeId() == null){
                     newRecipe = Recipe(
