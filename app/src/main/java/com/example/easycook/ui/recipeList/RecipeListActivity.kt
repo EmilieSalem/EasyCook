@@ -20,6 +20,8 @@ import com.example.easycook.model.Tag
 import com.example.easycook.ui.createRecipe.CreateRecipeActivity
 import com.example.easycook.ui.generateQRCode.GenerateQRCodeActivity
 import com.example.easycook.ui.recipeDetails.RecipeDetailsActivity
+import com.example.easycook.ui.recipeList.adapter.FilterAdapter
+import com.example.easycook.ui.recipeList.adapter.RecipeAdapter
 import com.example.easycook.ui.scanQRCode.ScanQRCodeActivity
 
 class RecipeListActivity : AppCompatActivity(), View.OnClickListener,

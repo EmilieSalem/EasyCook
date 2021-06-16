@@ -1,4 +1,4 @@
-package com.example.easycook.ui.recipeList
+package com.example.easycook.ui.recipeList.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -73,7 +73,6 @@ class RecipeAdapter(
 
             heart.isLiked = recipe.favorite
 
-            // TODO : implémenter les click listeners
             itemView.setOnClickListener {
                 recipeActionListener.onRecipeClicked(recipe)
             }

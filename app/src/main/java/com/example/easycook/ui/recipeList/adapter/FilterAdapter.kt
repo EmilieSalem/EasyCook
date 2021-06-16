@@ -1,4 +1,4 @@
-package com.example.easycook.ui.recipeList
+package com.example.easycook.ui.recipeList.adapter
 
 import android.view.LayoutInflater
 import android.view.View

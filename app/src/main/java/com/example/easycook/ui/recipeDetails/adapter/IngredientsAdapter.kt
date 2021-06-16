@@ -7,8 +7,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.easycook.R
 import com.example.easycook.model.Ingredient
-import com.example.easycook.model.Tag
-import com.example.easycook.ui.recipeList.FilterAdapter
 
 class IngredientsAdapter : RecyclerView.Adapter<IngredientsAdapter.IngredientsViewHolder>() {
 
@@ -16,6 +14,11 @@ class IngredientsAdapter : RecyclerView.Adapter<IngredientsAdapter.IngredientsVi
 
     fun show(ingredients: List<Ingredient>) {
         this.ingredients.addAll(ingredients)
+        notifyDataSetChanged()
+    }
+
+    fun addIngredient(ingredient : Ingredient){
+        this.ingredients.add(ingredient)
         notifyDataSetChanged()
     }
 

@@ -17,6 +17,11 @@ class StepsAdapter : RecyclerView.Adapter<StepsAdapter.StepsViewHolder>() {
         notifyDataSetChanged()
     }
 
+    fun addStep(step : String){
+        this.steps.add(step)
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StepsViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return StepsAdapter.StepsViewHolder(itemView = inflater.inflate(R.layout.step_item, parent, false))

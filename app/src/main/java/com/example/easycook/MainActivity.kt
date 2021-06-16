@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
                 "Mélanger avec la farine"), tags = mutableListOf(Tag.DESSERT, Tag.ASIAN))
 
         val recipeExample2 = Recipe(name="Pâtes", authorName = "Paul",
-            description = "des pâtes des pâtes  des pâtes  des pâtes ", imageURL = "https://cache.marieclaire.fr/data/photo/w1000_c17/cuisine/4e/pateaucitronal62-fotolia.jpg", numberOfShares = 1,
+            description = "des pâtes des pâtes  des pâtes  des pâtes ", imageURL = "https://cdn.radiofrance.fr/s3/cruiser-production/2020/10/6f4f495e-8366-4994-a85a-681d32f5c14b/870x489_pates.jpg", numberOfShares = 1,
             preparationTime = 15, favorite = false,
             ingredients = mutableListOf(Ingredient("pâtes", 1, "paquet")),
             steps = mutableListOf("Plonger les pâtes", "Attendre", "Egouter"),
