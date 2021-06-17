@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.View
 import android.view.WindowManager
 import android.widget.*
@@ -46,6 +47,7 @@ class CreateRecipeActivity : AppCompatActivity(), View.OnClickListener, TagCheck
     private var ingredients : MutableList<Ingredient> = mutableListOf()
     private var steps : MutableList<String> = mutableListOf()
     private var tags : MutableList<Tag> = mutableListOf()
+    private var favorite = false
 
     private lateinit var newRecipe : Recipe
     private lateinit var dialog : AlertDialog
@@ -155,6 +157,8 @@ class CreateRecipeActivity : AppCompatActivity(), View.OnClickListener, TagCheck
         imageURL = recipe.imageURL
         setUpImagePreview()
 
+        favorite = recipe.favorite
+
         sharesET.setText(recipe.numberOfShares.toString())
         preparationTimeET.setText(recipe.preparationTime.toString())
 
@@ -222,47 +226,54 @@ class CreateRecipeActivity : AppCompatActivity(), View.OnClickListener, TagCheck
                 btnCancel.setOnClickListener { dialog.dismiss() }
             }
             R.id.btnConfirmRecipe -> {
-                val name = recipeNameET.text.toString()
-                val authorName = authorET.text.toString()
-                val description = recipeDescriptionET.text.toString()
-                val numberOfShares = Integer.parseInt(sharesET.text.toString())
-                val preparationTime = Integer.parseInt(preparationTimeET.text.toString())
-                if(imageURLET.text.toString()!= "")
-                    imageURL = imageURLET.text.toString()
-                else
-                    imageURL = "https://glouton.b-cdn.net/site/images/no-image-wide.png"
 
-                if(getRecipeId() == null){
-                    newRecipe = Recipe(
-                        name = name,
-                        authorName = authorName,
-                        description = description,
-                        imageURL = imageURL,
-                        numberOfShares = numberOfShares,
-                        preparationTime = preparationTime,
-                        favorite = false,
-                        ingredients = ingredients,
-                        steps = steps,
-                        tags = tags)
-                }
+                if(TextUtils.isEmpty(recipeNameET.text) || TextUtils.isEmpty(authorET.text)
+                    || TextUtils.isEmpty(recipeDescriptionET.text) || TextUtils.isEmpty(sharesET.text)
+                    || TextUtils.isEmpty(preparationTimeET.text))
+                        Toast.makeText(this, "Veuillez remplir tous les champs !", Toast.LENGTH_SHORT).show()
                 else {
-                    newRecipe = Recipe(
-                        id = getRecipeId()!!,
-                        name = name,
-                        authorName = authorName,
-                        description = description,
-                        imageURL = imageURL,
-                        numberOfShares = numberOfShares,
-                        preparationTime = preparationTime,
-                        favorite = false,
-                        ingredients = ingredients,
-                        steps = steps,
-                        tags = tags
-                    )
+                    val name = recipeNameET.text.toString()
+                    val authorName = authorET.text.toString()
+                    val description = recipeDescriptionET.text.toString()
+                    val numberOfShares = Integer.parseInt(sharesET.text.toString())
+                    val preparationTime = Integer.parseInt(preparationTimeET.text.toString())
+                    if(imageURLET.text.toString()!= "")
+                        imageURL = imageURLET.text.toString()
+                    else
+                        imageURL = "https://glouton.b-cdn.net/site/images/no-image-wide.png"
+
+                    if(getRecipeId() == null){
+                        newRecipe = Recipe(
+                            name = name,
+                            authorName = authorName,
+                            description = description,
+                            imageURL = imageURL,
+                            numberOfShares = numberOfShares,
+                            preparationTime = preparationTime,
+                            favorite = favorite,
+                            ingredients = ingredients,
+                            steps = steps,
+                            tags = tags)
+                    }
+                    else {
+                        newRecipe = Recipe(
+                            id = getRecipeId()!!,
+                            name = name,
+                            authorName = authorName,
+                            description = description,
+                            imageURL = imageURL,
+                            numberOfShares = numberOfShares,
+                            preparationTime = preparationTime,
+                            favorite = favorite,
+                            ingredients = ingredients,
+                            steps = steps,
+                            tags = tags
+                        )
+                    }
+
+                    viewModel.saveRecipe(newRecipe, this)
+                    RecipeListActivity.navigateToRecipeList(this)
                 }
-                
-                viewModel.saveRecipe(newRecipe, this)
-                RecipeListActivity.navigateToRecipeList(this)
             }
         }
     }

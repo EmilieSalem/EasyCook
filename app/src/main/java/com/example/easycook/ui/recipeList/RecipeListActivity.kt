@@ -42,6 +42,10 @@ class RecipeListActivity : AppCompatActivity(), View.OnClickListener,
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recipe_list)
+    }
+
+    override fun onResume() {
+        super.onResume()
         bindViews()
         setClickListeners()
         setUpFilterRecyclerView()
@@ -168,5 +172,9 @@ class RecipeListActivity : AppCompatActivity(), View.OnClickListener,
 
     private fun unSelectFavoriteFilter() {
         favoriteFilter.backgroundTintList = getColorStateList(R.color.red)
+    }
+
+    override fun onBackPressed() {
+        // super.onBackPressed()
     }
 }
