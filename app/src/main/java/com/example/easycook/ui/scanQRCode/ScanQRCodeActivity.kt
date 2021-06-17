@@ -28,7 +28,7 @@ class ScanQRCodeActivity : AppCompatActivity() {
         if (result != null) {
             val value = result.contents
             if (value != null) {
-                Toast.makeText(this@ScanQRCodeActivity, value, Toast.LENGTH_SHORT).show()
+                // Toast.makeText(this@ScanQRCodeActivity, value, Toast.LENGTH_SHORT).show()
                 val recipe = Gson().fromJson(value, Recipe::class.java)
                 DataManager.saveRecipe(recipe,this)
                 RecipeListActivity.navigateToRecipeList(this)

@@ -11,9 +11,7 @@ import androidx.core.content.ContextCompat
 import com.example.easycook.MainActivity.Companion.recipeExample2
 import com.example.easycook.R
 import com.example.easycook.data.DataManager
-import com.example.easycook.model.Ingredient
 import com.example.easycook.model.Recipe
-import com.example.easycook.model.Tag
 
 class RAGlassesActivity : AppCompatActivity() {
 
@@ -25,7 +23,7 @@ class RAGlassesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_raglasses)
 
         val tv_step = findViewById<TextView>(R.id.tv_steps)
-        val btn_speech = findViewById<Button>(R.id.btn_speech)
+        val btn_step = findViewById<Button>(R.id.btn_step)
 
         val bundle = this.intent.extras
         val recipeId = bundle?.getString("recipeId") ?: "Pas de recipeId trouvé"
@@ -36,7 +34,7 @@ class RAGlassesActivity : AppCompatActivity() {
         if(recipe == null) recipe = recipeExample2
         tv_step!!.text = recipe!!.steps.get(0)
 
-        btn_speech!!.setOnClickListener {
+        btn_step!!.setOnClickListener {
             GoToNextStep()
             //startListeningCommand()
         }

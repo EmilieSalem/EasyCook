@@ -31,7 +31,7 @@ class GenerateQRCodeActivity : AppCompatActivity() {
 
         qrcodeImageView.setImageBitmap(bitmap)
 
-        Toast.makeText(this@GenerateQRCodeActivity, recipeJson, Toast.LENGTH_LONG).show()
+        // Toast.makeText(this@GenerateQRCodeActivity, recipeJson, Toast.LENGTH_LONG).show()
     }
 
     companion object {
