@@ -10,10 +10,7 @@
         android:roundIcon="@mipmap/logo_easycook_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EasyCook">
-        <activity
-            android:name="com.example.easycook.ui.scanQRCode.ScanQRCodeActivity"
-            android:screenOrientation="fullSensor"
-            tools:replace="screenOrientation" />
+        <activity android:name="com.example.easycook.ui.scanQRCode.ScanQRCodeActivity" />
         <activity android:name="com.example.easycook.ui.recipeList.RecipeListActivity" />
         <activity android:name="com.example.easycook.ui.recipeDetails.RecipeDetailsActivity" />
         <activity android:name="com.example.easycook.ui.raGlasses.RAGlassesActivity" />
