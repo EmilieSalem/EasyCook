@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.cielyang.android.clearableedittext.ClearableEditText
 import com.example.easycook.R
 import com.example.easycook.model.Ingredient
 import com.example.easycook.model.Recipe
@@ -28,12 +29,12 @@ class CreateRecipeActivity : AppCompatActivity(), View.OnClickListener, TagCheck
     private val viewModel by viewModels<CreateRecipeViewModel>()
 
     private lateinit var image: ImageView
-    private lateinit var imageURLET : EditText
-    private lateinit var recipeNameET: EditText
-    private lateinit var preparationTimeET: EditText
-    private lateinit var sharesET: EditText
-    private lateinit var recipeDescriptionET: EditText
-    private lateinit var authorET: EditText
+    private lateinit var imageURLET : ClearableEditText
+    private lateinit var recipeNameET: ClearableEditText
+    private lateinit var preparationTimeET: ClearableEditText
+    private lateinit var sharesET: ClearableEditText
+    private lateinit var recipeDescriptionET: ClearableEditText
+    private lateinit var authorET: ClearableEditText
 
     private lateinit var ingredientsRecyclerView: RecyclerView
     private lateinit var stepsRecyclerView: RecyclerView

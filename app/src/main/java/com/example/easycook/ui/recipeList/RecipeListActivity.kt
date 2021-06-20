@@ -45,11 +45,6 @@ class RecipeListActivity : AppCompatActivity(), View.OnClickListener,
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recipe_list)
-
-        // TODO : POUR LES TESTS, A EFFACER PAR LA SUITE
-        DataManager.saveRecipe(MainActivity.recipeExample1, this)
-        DataManager.saveRecipe(MainActivity.recipeExample2, this)
-        DataManager.saveRecipe(MainActivity.recipeExample3, this)
     }
 
     override fun onResume() {

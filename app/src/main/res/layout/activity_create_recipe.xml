@@ -46,7 +46,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <EditText
+                    <com.cielyang.android.clearableedittext.ClearableEditText
                         android:id="@+id/new_recipe_image_url"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
                         card_view:layout_constraintStart_toStartOf="@+id/new_recipe_image"
                         card_view:layout_constraintTop_toTopOf="parent" />
 
-                    <EditText
+                    <com.cielyang.android.clearableedittext.ClearableEditText
                         android:id="@+id/new_recipe_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -107,7 +107,7 @@
                         app:layout_constraintTop_toBottomOf="@id/new_recipe_name"
                         card_view:layout_constraintStart_toStartOf="parent" />
 
-                    <EditText
+                    <com.cielyang.android.clearableedittext.ClearableEditText
                         android:id="@+id/new_recipe_preparation_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -128,7 +128,7 @@
                         app:layout_constraintTop_toBottomOf="@id/new_recipe_preparation_time_icon"
                         card_view:layout_constraintStart_toStartOf="parent" />
 
-                    <EditText
+                    <com.cielyang.android.clearableedittext.ClearableEditText
                         android:id="@+id/new_recipe_shares"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -149,7 +149,7 @@
                         app:layout_constraintTop_toBottomOf="@id/new_recipe_shares_icon"
                         card_view:layout_constraintStart_toStartOf="parent" />
 
-                    <EditText
+                    <com.cielyang.android.clearableedittext.ClearableEditText
                         android:id="@+id/new_recipe_author"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -160,7 +160,7 @@
                         card_view:layout_constraintStart_toEndOf="@+id/new_recipe_author_icon"
                         card_view:layout_constraintTop_toTopOf="@+id/new_recipe_author_icon" />
 
-                    <EditText
+                    <com.cielyang.android.clearableedittext.ClearableEditText
                         android:id="@+id/new_recipe_description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

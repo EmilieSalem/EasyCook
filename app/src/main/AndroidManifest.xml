@@ -13,18 +13,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EasyCook">
         <activity android:name="com.example.easycook.ui.scanQRCode.ScanQRCodeActivity" />
-        <activity android:name="com.example.easycook.ui.recipeList.RecipeListActivity">
+        <activity android:name="com.example.easycook.ui.recipeList.RecipeListActivity"></activity>
+        <activity android:name="com.example.easycook.ui.recipeDetails.RecipeDetailsActivity" />
+        <activity android:name="com.example.easycook.ui.raGlasses.RAGlassesActivity" />
+        <activity android:name="com.example.easycook.ui.generateQRCode.GenerateQRCodeActivity" />
+        <activity android:name="com.example.easycook.ui.createRecipe.CreateRecipeActivity" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.easycook.ui.recipeDetails.RecipeDetailsActivity" />
-        <activity android:name="com.example.easycook.ui.raGlasses.RAGlassesActivity" />
-        <activity android:name="com.example.easycook.ui.generateQRCode.GenerateQRCodeActivity" />
-        <activity android:name="com.example.easycook.ui.createRecipe.CreateRecipeActivity" />
-        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

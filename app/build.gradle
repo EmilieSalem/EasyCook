@@ -45,6 +45,7 @@ dependencies {
     implementation "androidx.activity:activity-ktx:$activity_version"
     implementation 'com.github.jd-alexander:LikeButton:0.2.3' // Librairie qui fournit l'animation du coeur
     implementation 'com.squareup.picasso:picasso:2.8' // Librairie qui permet d'afficher des images
+    implementation 'com.github.Cielsk:clearable-edittext:0.0.5'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
