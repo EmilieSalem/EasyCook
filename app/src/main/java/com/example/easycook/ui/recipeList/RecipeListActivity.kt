@@ -5,10 +5,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.ImageButton
-import android.widget.ProgressBar
-import android.widget.TextView
-import android.widget.Toast
+import android.view.WindowManager
+import android.widget.*
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.isVisible
@@ -25,19 +23,22 @@ import com.example.easycook.ui.generateQRCode.GenerateQRCodeActivity
 import com.example.easycook.ui.recipeDetails.RecipeDetailsActivity
 import com.example.easycook.ui.recipeList.adapter.FilterAdapter
 import com.example.easycook.ui.recipeList.adapter.RecipeAdapter
+import com.example.easycook.ui.recipeList.adapter.SearchBarAdapter
 import com.example.easycook.ui.scanQRCode.ScanQRCodeActivity
 
 class RecipeListActivity : AppCompatActivity(), View.OnClickListener,
-    RecipeAdapter.RecipeActionListener, FilterAdapter.FilterActionListener {
+    RecipeAdapter.RecipeActionListener, FilterAdapter.FilterActionListener, SearchBarAdapter.SearchOptionListener {
 
     private lateinit var recipeAdapter: RecipeAdapter
     private lateinit var filterAdapter: FilterAdapter
     private lateinit var progress: ProgressBar
     private lateinit var recipeRecyclerView: RecyclerView
     private lateinit var filterRecyclerView: RecyclerView
+    private lateinit var searchView : SearchView
     private lateinit var btnScanQRCode: ImageButton
     private lateinit var btnAddRecipe: ImageButton
     private lateinit var favoriteFilter: TextView
+    private lateinit var searchBarRV : RecyclerView
 
     private val viewModel by viewModels<RecipeListViewModel>()
 
@@ -49,10 +50,13 @@ class RecipeListActivity : AppCompatActivity(), View.OnClickListener,
 
     override fun onResume() {
         super.onResume()
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN) // Empêche le focus automatique sur les EditText
+
         bindViews()
         setClickListeners()
         setUpFilterRecyclerView()
         setUpRecipeRecyclerView()
+        setUpSearchView()
         startObservingViewModel()
         loadRecipes()
     }
@@ -66,6 +70,8 @@ class RecipeListActivity : AppCompatActivity(), View.OnClickListener,
         btnScanQRCode = findViewById(R.id.btnScanQRCode)
         btnAddRecipe = findViewById(R.id.btnAddRecipe)
         favoriteFilter = findViewById(R.id.filter_favourite)
+        searchView = findViewById(R.id.recipe_searchView)
+        searchBarRV = findViewById(R.id.searchBar_rv)
     }
 
     private fun setClickListeners() {
@@ -79,6 +85,7 @@ class RecipeListActivity : AppCompatActivity(), View.OnClickListener,
             when (viewState) {
                 is RecipeListViewModel.ViewState.Content -> {
                     recipeAdapter.show(viewState.recipes)
+                    setUpSearchView()
                     showProgress(false)
                 }
                 is RecipeListViewModel.ViewState.Loading -> {
@@ -121,6 +128,31 @@ class RecipeListActivity : AppCompatActivity(), View.OnClickListener,
         filterRecyclerView.adapter = filterAdapter
         filterRecyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
         filterAdapter.show(Tag.values().toList())
+    }
+
+    private fun setUpSearchView(){
+        val recipes = DataManager.getRecipeList(this)
+        val searchBarAdapter = SearchBarAdapter(this, recipes)
+        searchBarRV.adapter = searchBarAdapter
+        searchBarRV.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+
+        searchView.setOnQueryTextListener(object:SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                searchBarAdapter.filter(query);
+                return true;
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                searchBarRV.isVisible = true
+                searchBarAdapter.filter(newText);
+                return true;
+            }
+        })
+
+        searchView.setOnCloseListener {
+            searchBarRV.isVisible = false
+            false
+        }
     }
 
     companion object {
@@ -179,6 +211,10 @@ class RecipeListActivity : AppCompatActivity(), View.OnClickListener,
 
     override fun onBackPressed() {
         // super.onBackPressed()
+    }
+
+    override fun onOptionClicked(recipeId: String) {
+        RecipeDetailsActivity.navigateToRecipeDetails(context = this, recipeId = recipeId)
     }
 
 }
