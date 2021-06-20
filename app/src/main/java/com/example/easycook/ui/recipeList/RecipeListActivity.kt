@@ -14,7 +14,10 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.easycook.MainActivity
 import com.example.easycook.R
+import com.example.easycook.data.DataManager
+import com.example.easycook.model.Ingredient
 import com.example.easycook.model.Recipe
 import com.example.easycook.model.Tag
 import com.example.easycook.ui.createRecipe.CreateRecipeActivity
@@ -42,6 +45,11 @@ class RecipeListActivity : AppCompatActivity(), View.OnClickListener,
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recipe_list)
+
+        // TODO : POUR LES TESTS, A EFFACER PAR LA SUITE
+        DataManager.saveRecipe(MainActivity.recipeExample1, this)
+        DataManager.saveRecipe(MainActivity.recipeExample2, this)
+        DataManager.saveRecipe(MainActivity.recipeExample3, this)
     }
 
     override fun onResume() {
@@ -177,4 +185,5 @@ class RecipeListActivity : AppCompatActivity(), View.OnClickListener,
     override fun onBackPressed() {
         // super.onBackPressed()
     }
+
 }
