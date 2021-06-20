@@ -1,12 +1,12 @@
 package com.example.easycook.ui.recipeDetails
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.view.View
+import android.widget.*
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.easycook.R
 import com.example.easycook.data.DataManager
+import com.example.easycook.model.Ingredient
 import com.example.easycook.model.Recipe
 import com.example.easycook.ui.createRecipe.CreateRecipeActivity
 import com.example.easycook.ui.raGlasses.RAGlassesActivity
@@ -78,9 +79,21 @@ class RecipeDetailsActivity : AppCompatActivity() {
             CreateRecipeActivity.navigateToCreateRecipe(this, getRecipeId())
         }
         btnDelete.setOnClickListener {
-            // TODO : popup de confirmation
-            DataManager.removeRecipe(getRecipeId(), this)
-            RecipeListActivity.navigateToRecipeList(this)
+            val dialogBuilder = AlertDialog.Builder(this)
+            val popupView: View = layoutInflater.inflate(R.layout.delete_popup, null)
+            dialogBuilder.setView(popupView)
+            val dialog = dialogBuilder.create()
+            dialog.show()
+
+            val btnConfirm = dialog.findViewById(R.id.popup_btn_delete) as Button
+            btnConfirm.setOnClickListener {
+                DataManager.removeRecipe(getRecipeId(), this)
+                RecipeListActivity.navigateToRecipeList(this)
+                dialog.dismiss()
+            }
+
+            val btnCancel = dialog.findViewById(R.id.popup_btn_cancel_delete) as Button
+            btnCancel.setOnClickListener { dialog.dismiss() }
         }
         btnRaGlasses.setOnClickListener {
             RAGlassesActivity.navigateToRAGlasses(this, getRecipeId())

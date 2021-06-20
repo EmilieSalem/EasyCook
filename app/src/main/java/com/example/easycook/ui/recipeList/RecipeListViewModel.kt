@@ -33,7 +33,11 @@ class RecipeListViewModel(application: Application) : AndroidViewModel(applicati
                     favorite = favorite
                 ), context
             )
-            loadRecipes(context)
+            when(selectedTag.value){
+                SelectedFilter.Favorite -> loadFavoriteRecipeList(context)
+                is SelectedFilter.TagClicked -> loadFilteredRecipeList((selectedTag.value as SelectedFilter.TagClicked).tag, context)
+                SelectedFilter.None, null -> loadRecipes(context)
+            }
         }
     }
 
