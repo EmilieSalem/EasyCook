@@ -7,13 +7,50 @@
     tools:context=".ui.raGlasses.RAGlassesActivity">
 
     <TextView
-        android:id="@+id/label_ra_glasses"
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_steps"
+        android:layout_width="match_parent"
+        android:layout_height="182dp"
+        android:orientation="vertical"
+        android:text="Step"
+        android:textColor="@color/black"
+        android:textSize="70dp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/ll"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.821"
+        tools:layout_editor_absoluteX="3dp" />
+
+
+
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ecran des lunettes de RA"
+        android:layout_marginBottom="@android:dimen/app_icon_size"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" >
+
+        <Button
+            android:id="@+id/btn_speech"
+            android:layout_width="143dp"
+            android:layout_height="match_parent"
+            android:text="speech" />
+
+        <Button
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:id="@+id/btn_step_last"
+            android:text="LAST"/>
+
+        <Button
+            android:id="@+id/btn_step"
+            android:layout_width="129dp"
+            android:layout_height="match_parent"
+            android:text="next" />
+
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
