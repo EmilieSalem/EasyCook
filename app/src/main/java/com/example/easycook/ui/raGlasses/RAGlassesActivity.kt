@@ -88,10 +88,10 @@ class RAGlassesActivity : AppCompatActivity() {
         //dks.oneStepResultVerify = true
         dks.continuousSpeechRecognition=true
         dks.startSpeechRecognition()
+//        btn_speech.setOnClickListener {
+//
+//        }
 
-        btn_speech.setOnClickListener {
-
-        }
 
         btn_last.setOnClickListener {
             GoToLastStep()
@@ -103,10 +103,9 @@ class RAGlassesActivity : AppCompatActivity() {
     }
 
 
-    //To implement the method vocal
-
-    private fun startListeningCommand() {
-    }
+//
+//    private fun startListeningCommand() {
+//    }
 
     private fun GoToNextStep(){
 
