@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.*
@@ -169,7 +170,8 @@ class CreateRecipeActivity : AppCompatActivity(), View.OnClickListener, TagCheck
         steps.addAll(recipe.steps)
         stepsAdapter.show(recipe.steps)
 
-        // TODO : pour les tags !!
+        tags.addAll(recipe.tags)
+        tagsAdapter.check(tags.toMutableList())
     }
 
     override fun onTagCheckboxClicked(tag: Tag, tagCheckbox : CheckBox) {

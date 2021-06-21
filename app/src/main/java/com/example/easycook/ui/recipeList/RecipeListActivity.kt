@@ -1,5 +1,6 @@
 package com.example.easycook.ui.recipeList
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -179,7 +180,19 @@ class RecipeListActivity : AppCompatActivity(), View.OnClickListener,
     }
 
     override fun onDeleteClicked(recipeId: String) {
-        viewModel.deleteRecipe(recipeId = recipeId, context = this)
+        val dialogBuilder = AlertDialog.Builder(this)
+        val popupView: View = layoutInflater.inflate(R.layout.delete_popup, null)
+        dialogBuilder.setView(popupView)
+        val dialog = dialogBuilder.create()
+        dialog.show()
+
+        val btnConfirm = dialog.findViewById(R.id.popup_btn_delete) as Button
+        btnConfirm.setOnClickListener {
+            viewModel.deleteRecipe(recipeId = recipeId, context = this)
+            dialog.dismiss()
+        }
+        val btnCancel = dialog.findViewById(R.id.popup_btn_cancel_delete) as Button
+        btnCancel.setOnClickListener { dialog.dismiss() }
     }
 
     override fun onGenerateQRCodeClicked(recipeId: String) {
