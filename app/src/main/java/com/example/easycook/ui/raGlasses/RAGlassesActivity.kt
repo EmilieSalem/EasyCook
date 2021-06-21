@@ -42,8 +42,11 @@ class RAGlassesActivity : AppCompatActivity() {
         get recipe by id from API ou preference
          */
 
+        recipe = DataManager.getRecipeById(recipeId, context = this)
 
-        if(recipe == null) recipe = recipeExample2
+
+
+    //  if(recipe == null) recipe = recipeExample2
         tv_step!!.text = recipe!!.steps.get(0)
 
         dks = Dks(application, supportFragmentManager, object: DksListener{
@@ -84,14 +87,8 @@ class RAGlassesActivity : AppCompatActivity() {
 
         })
 
-//        dks.injectProgressView(R.layout.layout_pv_inject)
-        //dks.oneStepResultVerify = true
         dks.continuousSpeechRecognition=true
         dks.startSpeechRecognition()
-//        btn_speech.setOnClickListener {
-//
-//        }
-
 
         btn_last.setOnClickListener {
             GoToLastStep()
