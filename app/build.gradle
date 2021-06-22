@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -9,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.easycook"
-        minSdkVersion 24
+        minSdkVersion 19
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -46,6 +47,13 @@ dependencies {
     implementation 'com.github.jd-alexander:LikeButton:0.2.3' // Librairie qui fournit l'animation du coeur
     implementation 'com.squareup.picasso:picasso:2.8' // Librairie qui permet d'afficher des images
     implementation 'com.github.Cielsk:clearable-edittext:0.0.5'
+
+    //recogniser vocal
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.github.vikramezhil:DroidSpeech2.0:v1.2'
+    implementation 'com.google.android.material:material:1.3.0'
+    implementation 'com.google.android.material:material:1.4.0-rc01'
+
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

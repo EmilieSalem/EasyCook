@@ -38,7 +38,14 @@ object DataManager {
      */
     fun saveRecipe(recipe : Recipe, context: Context) {
         val recipes = getRecipeList(context).toMutableList()
-        recipes.removeIf { it.id == recipe.id }
+        var indextoremove:Int = -1
+        for(r in recipes){
+            indextoremove++
+            if(r.id == recipe.id) break
+        }
+        if(indextoremove<recipes.size&&indextoremove>=0) recipes.removeAt(indextoremove)
+        //recipes.removeIf { it.id == recipeId}
+        //recipes.removeIf { it.id == recipe.id }
         recipes.add(0,recipe)
         val recipeList = RecipeList(recipes)
         val editor = provideSharedPreferencesEditor(context)
@@ -58,7 +65,15 @@ object DataManager {
 
     fun removeRecipe(recipeId: String, context: Context){
         val recipes = getRecipeList(context).toMutableList()
-        recipes.removeIf { it.id == recipeId}
+        var indextoremove:Int = -1
+        for(recipe in recipes){
+            indextoremove++
+            if(recipe.id == recipeId) break
+        }
+        if(indextoremove<recipes.size&&indextoremove>=0) recipes.removeAt(indextoremove)
+//recipes.removeIf { it.id == recipeId}
+
+        //recipes.removeIf { it.id == recipeId}
         val recipeList = RecipeList(recipes)
         val editor = provideSharedPreferencesEditor(context)
         editor.putString(RECIPE_LIST_KEY, Gson().toJson(recipeList))
